@@ -16,31 +16,6 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
-// Updated metadata for Cuma Karadaş portfolio
-export const metadata: Metadata = {
-  title: "Cuma Karadaş | Front-End Developer & Network Specialist",
-  description:
-    "Freelance Front-End Developer and Network Specialist based in Ankara. Building web solutions and analyzing network protocols.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
-}
-
 // Added viewport configuration with dark theme color
 export const viewport: Viewport = {
   themeColor: "#050505",
