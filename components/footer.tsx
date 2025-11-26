@@ -1,5 +1,6 @@
+"use client"
+
 import { Github, Linkedin, BookOpen, Youtube } from "lucide-react"
-;("use client")
 import { useLanguage } from "@/lib/i18n/language-context"
 
 const socialLinksData = [
