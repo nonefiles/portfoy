@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useLanguage } from "@/lib/i18n/language-context"
 
 export function AboutSection() {
+  const { t } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -58,11 +60,10 @@ export function AboutSection() {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-muted-foreground/40" />
             </div>
 
-            {/* Status indicator */}
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-background border border-border px-4 py-1">
               <span className="font-mono text-xs text-muted-foreground flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                AVAILABLE FOR HIRE
+                {t.about.status}
               </span>
             </div>
           </div>
@@ -70,26 +71,22 @@ export function AboutSection() {
           {/* About Text */}
           <div className="space-y-6">
             <div className="font-mono text-sm text-muted-foreground">
-              <span className="text-foreground">&gt;</span> cat about.txt
+              <span className="text-foreground">&gt;</span> {t.about.command.slice(2)}
             </div>
-            <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground">About Me</h2>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground">{t.about.title}</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm <span className="text-foreground font-medium">Cuma Karadaş</span>, a Freelance Front-End Developer
-                and Network Specialist based in <span className="text-foreground">Ankara, Turkey</span>.
+                {t.about.intro} <span className="text-foreground font-medium">{t.about.name}</span>
+                {t.about.role} <span className="text-foreground">{t.about.location}</span>.
               </p>
+              <p>{t.about.paragraph1}</p>
               <p>
-                My work sits at the intersection of web development and network engineering. I build modern, performant
-                web applications while diving deep into protocol analysis and security research.
-              </p>
-              <p>
-                As a Tech Writer, I translate complex technical concepts into accessible content. My expertise spans{" "}
-                <span className="text-foreground">Research & Synthesis</span>, turning raw data into actionable
-                insights.
+                {t.about.paragraph2} <span className="text-foreground">{t.about.expertise}</span>
+                {t.about.paragraph2End}
               </p>
             </div>
             <div className="flex flex-wrap gap-3 pt-4">
-              {["Freelancer", "Web Specialist", "Tech Writer", "Researcher"].map((tag) => (
+              {t.about.tags.map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 border border-border font-mono text-xs text-muted-foreground hover:border-foreground hover:text-foreground transition-colors"

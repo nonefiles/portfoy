@@ -2,9 +2,10 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { LanguageProvider } from "@/lib/i18n/language-context"
 import "./globals.css"
 
-// <CHANGE> Updated fonts to Inter for body and JetBrains Mono for headings
+// Updated fonts to Inter for body and JetBrains Mono for headings
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -15,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 })
 
-// <CHANGE> Updated metadata for Cuma Karadaş portfolio
+// Updated metadata for Cuma Karadaş portfolio
 export const metadata: Metadata = {
   title: "Cuma Karadaş | Front-End Developer & Network Specialist",
   description:
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   },
 }
 
-// <CHANGE> Added viewport configuration with dark theme color
+// Added viewport configuration with dark theme color
 export const viewport: Viewport = {
   themeColor: "#050505",
 }
@@ -53,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
       </body>
     </html>

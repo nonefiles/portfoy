@@ -3,14 +3,17 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Mail } from "lucide-react"
+import { useLanguage } from "@/lib/i18n/language-context"
 
 export function HeroSection() {
+  const { t } = useLanguage()
   const [displayText, setDisplayText] = useState("")
   const [showCursor, setShowCursor] = useState(true)
-  const fullText = ">_ Hello, I am Cuma."
+  const fullText = t.hero.greeting
 
   useEffect(() => {
     let index = 0
+    setDisplayText("") // Reset on language change
     const interval = setInterval(() => {
       if (index <= fullText.length) {
         setDisplayText(fullText.slice(0, index))
@@ -21,7 +24,7 @@ export function HeroSection() {
     }, 100)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [fullText])
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
@@ -47,11 +50,11 @@ export function HeroSection() {
           />
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
-          Building Web Solutions & Analyzing Network Protocols.
+          {t.hero.subtitle}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="font-mono text-sm tracking-wide px-8" onClick={() => scrollToSection("archive")}>
-            View Research
+            {t.hero.viewResearch}
             <ArrowDown className="ml-2 h-4 w-4" />
           </Button>
           <Button
@@ -61,7 +64,7 @@ export function HeroSection() {
             onClick={() => scrollToSection("footer")}
           >
             <Mail className="mr-2 h-4 w-4" />
-            Contact Me
+            {t.hero.contactMe}
           </Button>
         </div>
       </div>

@@ -2,47 +2,12 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Code2, Database, Network, Terminal, Layers } from "lucide-react"
+import { useLanguage } from "@/lib/i18n/language-context"
 
-const techStack = [
-  {
-    name: "React",
-    icon: Code2,
-    description: "Component Architecture",
-    category: "Frontend",
-  },
-  {
-    name: "Next.js",
-    icon: Layers,
-    description: "Full-Stack Framework",
-    category: "Framework",
-  },
-  {
-    name: "TypeScript",
-    icon: Code2,
-    description: "Type-Safe Development",
-    category: "Language",
-  },
-  {
-    name: "Linux",
-    icon: Terminal,
-    description: "System Administration",
-    category: "OS",
-  },
-  {
-    name: "SQL",
-    icon: Database,
-    description: "Database Management",
-    category: "Database",
-  },
-  {
-    name: "Network Engineering",
-    icon: Network,
-    description: "Protocol Analysis",
-    category: "Infrastructure",
-  },
-]
+const techIcons = [Code2, Layers, Code2, Terminal, Database, Network]
 
 export function TechStackSection() {
+  const { t } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -72,9 +37,9 @@ export function TechStackSection() {
           }`}
         >
           <div className="font-mono text-sm text-muted-foreground mb-4">
-            <span className="text-foreground">&gt;</span> ls ./skills
+            <span className="text-foreground">&gt;</span> {t.techStack.command.slice(2)}
           </div>
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground">Tech Stack</h2>
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-foreground">{t.techStack.title}</h2>
         </div>
 
         {/* Bento Grid */}
@@ -83,8 +48,8 @@ export function TechStackSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {techStack.map((tech, index) => {
-            const Icon = tech.icon
+          {t.techStack.items.map((tech, index) => {
+            const Icon = techIcons[index]
             return (
               <div
                 key={tech.name}
